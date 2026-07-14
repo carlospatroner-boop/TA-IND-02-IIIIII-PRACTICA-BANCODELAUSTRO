@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: banco-austro
+
+datasources:
+  cuenca:
+    url: jdbc:postgresql://localhost:5432/banco_cuenca
+    username: banco
+    password: banco123
+    driver-class-name: org.postgresql.Driver
+  quito:
+    url: jdbc:postgresql://localhost:5433/banco_quito
+    username: banco
+    password: banco123
+    driver-class-name: org.postgresql.Driver
+  # Datasource agregado para el Ejercicio propuesto 1 (nodo Guayaquil)
+  guayaquil:
+    url: jdbc:postgresql://localhost:5434/banco_guayaquil
+    username: banco
+    password: banco123
+    driver-class-name: org.postgresql.Driver

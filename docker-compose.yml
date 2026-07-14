@@ -1,0 +1,56 @@
+services:
+
+  db-cuenca:
+    image: postgres:16-alpine
+    container_name: banco-cuenca
+    environment:
+      POSTGRES_DB: banco_cuenca
+      POSTGRES_USER: banco
+      POSTGRES_PASSWORD: banco123
+    ports:
+      - "5432:5432"
+    volumes:
+      - vol-cuenca:/var/lib/postgresql/data
+      - ./sql-cuenca:/docker-entrypoint-initdb.d
+    networks:
+      - bda-net
+
+  db-quito:
+    image: postgres:16-alpine
+    container_name: banco-quito
+    environment:
+      POSTGRES_DB: banco_quito
+      POSTGRES_USER: banco
+      POSTGRES_PASSWORD: banco123
+    ports:
+      - "5433:5432"
+    volumes:
+      - vol-quito:/var/lib/postgresql/data
+      - ./sql-quito:/docker-entrypoint-initdb.d
+    networks:
+      - bda-net
+
+  # Nodo agregado para el Ejercicio propuesto 1: sede Guayaquil, prefijo de cuenta "09"
+  db-guayaquil:
+    image: postgres:16-alpine
+    container_name: banco-guayaquil
+    environment:
+      POSTGRES_DB: banco_guayaquil
+      POSTGRES_USER: banco
+      POSTGRES_PASSWORD: banco123
+    ports:
+      - "5434:5432"
+    volumes:
+      - vol-guayaquil:/var/lib/postgresql/data
+      - ./sql-guayaquil:/docker-entrypoint-initdb.d
+    networks:
+      - bda-net
+
+networks:
+  bda-net:
+    driver: bridge
+
+volumes:
+  vol-cuenca:
+  vol-quito:
+  vol-guayaquil:
